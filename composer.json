@@ -3,10 +3,15 @@
     "license": "proprietary",
     "require": {
         "php": "^7.0.8",
+        "sensio/framework-extra-bundle": "^5.1",
+        "sensiolabs/security-checker": "^4.1",
         "symfony/console": "^3.4",
+        "symfony/debug-pack": "^1.0",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^3.4",
         "symfony/lts": "^3",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/twig-bundle": "^3.4",
         "symfony/web-server-bundle": "3.4",
         "symfony/yaml": "^3.4"
     },
@@ -32,7 +37,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
