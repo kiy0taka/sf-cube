@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
@@ -17,25 +20,33 @@ class ProductController extends Controller
     private $productRepository;
 
     /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
      * ProductController constructor.
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository, FormFactoryInterface $formFactory)
     {
         $this->productRepository = $productRepository;
+        $this->formFactory = $formFactory;
     }
 
     /**
      * @Route("/product/{id}", name="product")
      * @Template("product.twig")
      */
-    public function index(Product $Product)
+    public function index(Request $request, Product $Product)
     {
-        $NewProduct = new Product();
-        $NewProduct->name = "ディナーフォーク";
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($NewProduct);
-        $em->flush();
+        $builder = $this->createFormBuilder(ProductType::class, $Product);
+        $form = $builder->getForm();
+        $form->handleRequest($request);
 
-        return ['Product' => $Product];
+//        if ( $form->isSubmitted()) {
+//
+//        }
+
+        return ['Product' => $Product, 'form' => $form->createView()];
     }
 }
