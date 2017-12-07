@@ -2,5 +2,8 @@
 {% extends "base.html.twig" %}
 {% block body %}
     {{ Product.name }}
-    {{ form_row(form) }}
+    <form name="form1" method="post" action="">
+        {{ form_row(form) }}
+        <input type="submit" value="登録">
+    </form>
 {% endblock %}

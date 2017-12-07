@@ -10,7 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
@@ -35,17 +34,21 @@ class ProductController extends Controller
 
     /**
      * @Route("/product/{id}", name="product")
-     * @Template("product.twig")
+     * @Template("@front/product.twig")
      */
     public function index(Request $request, Product $Product)
     {
-        $builder = $this->createFormBuilder(ProductType::class, $Product);
+        $builder = $this
+            ->formFactory
+            ->createNamedBuilder('', ProductType::class, $Product);
+
         $form = $builder->getForm();
         $form->handleRequest($request);
 
-//        if ( $form->isSubmitted()) {
-//
-//        }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush($Product);
+        }
 
         return ['Product' => $Product, 'form' => $form->createView()];
     }
