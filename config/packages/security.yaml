@@ -3,7 +3,8 @@ security:
         # Our user class and the algorithm we'll use to encode passwords
         # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
         App\Entity\Member:
-          algorithm: bcrypt
+#          algorithm: bcrypt
+            id: App\Security\PasswordEncoder
 
     providers:
         # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded

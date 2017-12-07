@@ -108,8 +108,7 @@ class Member implements UserInterface, \Serializable
      */
     public function getSalt()
     {
-        // return $this->salt;
-        return null;
+         return $this->salt;
     }
 
 
