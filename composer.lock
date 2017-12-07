@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba3e610377e9654657ca35620ab56d4e",
+    "content-hash": "74aa5d44d093567ddb2b1f5ce24f5484",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -4008,38 +4008,51 @@
             "time": "2017-11-24T14:13:49+00:00"
         },
         {
-            "name": "symfony/security-core",
+            "name": "symfony/security",
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/security-core.git",
-                "reference": "b033c6b8f287c6eaf052820a6930cdc9c4b97291"
+                "url": "https://github.com/symfony/security.git",
+                "reference": "3e2df407f47c0f6fbfb73d3ea2fefe7ff9ab2ed5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-core/zipball/b033c6b8f287c6eaf052820a6930cdc9c4b97291",
-                "reference": "b033c6b8f287c6eaf052820a6930cdc9c4b97291",
+                "url": "https://api.github.com/repos/symfony/security/zipball/3e2df407f47c0f6fbfb73d3ea2fefe7ff9ab2ed5",
+                "reference": "3e2df407f47c0f6fbfb73d3ea2fefe7ff9ab2ed5",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
-                "symfony/polyfill-php56": "~1.0"
+                "symfony/event-dispatcher": "~2.8|~3.0|~4.0",
+                "symfony/http-foundation": "^2.8.31|~3.3.13|~3.4|~4.0",
+                "symfony/http-kernel": "~3.3|~4.0",
+                "symfony/polyfill-php56": "~1.0",
+                "symfony/polyfill-php70": "~1.0",
+                "symfony/polyfill-util": "~1.0",
+                "symfony/property-access": "~2.8|~3.0|~4.0"
+            },
+            "replace": {
+                "symfony/security-core": "self.version",
+                "symfony/security-csrf": "self.version",
+                "symfony/security-guard": "self.version",
+                "symfony/security-http": "self.version"
             },
             "require-dev": {
                 "psr/container": "^1.0",
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.8|~3.0|~4.0",
                 "symfony/expression-language": "~2.8|~3.0|~4.0",
-                "symfony/http-foundation": "~2.8|~3.0|~4.0",
+                "symfony/finder": "~2.8|~3.0|~4.0",
                 "symfony/ldap": "~3.1|~4.0",
+                "symfony/polyfill-intl-icu": "~1.0",
+                "symfony/routing": "~2.8|~3.0|~4.0",
                 "symfony/validator": "^3.2.5|~4.0"
             },
             "suggest": {
                 "psr/container": "To instantiate the Security class",
-                "symfony/event-dispatcher": "",
                 "symfony/expression-language": "For using the expression voter",
-                "symfony/http-foundation": "",
-                "symfony/ldap": "For using LDAP integration",
+                "symfony/form": "",
+                "symfony/ldap": "For using the LDAP user and authentication providers",
+                "symfony/routing": "For using the HttpUtils class to create sub-requests, redirect the user, and match URLs",
                 "symfony/validator": "For using the user password constraint"
             },
             "type": "library",
@@ -4050,7 +4063,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Component\\Security\\Core\\": ""
+                    "Symfony\\Component\\Security\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -4070,40 +4083,64 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Security Component - Core Library",
+            "description": "Symfony Security Component",
             "homepage": "https://symfony.com",
-            "time": "2017-11-05T16:10:10+00:00"
+            "time": "2017-12-03T21:15:09+00:00"
         },
         {
-            "name": "symfony/security-csrf",
+            "name": "symfony/security-bundle",
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/security-csrf.git",
-                "reference": "fc144acbad68d79c8263aeb3e5d149844d67280e"
+                "url": "https://github.com/symfony/security-bundle.git",
+                "reference": "d3c407a53dfec4139d3d4536963e539b37ec861f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-csrf/zipball/fc144acbad68d79c8263aeb3e5d149844d67280e",
-                "reference": "fc144acbad68d79c8263aeb3e5d149844d67280e",
+                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/d3c407a53dfec4139d3d4536963e539b37ec861f",
+                "reference": "d3c407a53dfec4139d3d4536963e539b37ec861f",
                 "shasum": ""
             },
             "require": {
+                "ext-xml": "*",
                 "php": "^5.5.9|>=7.0.8",
-                "symfony/polyfill-php56": "~1.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/http-kernel": "~3.3|~4.0",
                 "symfony/polyfill-php70": "~1.0",
-                "symfony/security-core": "~2.8|~3.0|~4.0"
+                "symfony/security": "~3.4|~4.0"
             },
             "conflict": {
-                "symfony/http-foundation": "<2.8.31|~3.3,<3.3.13"
+                "symfony/console": "<3.4",
+                "symfony/event-dispatcher": "<3.4",
+                "symfony/framework-bundle": "<3.4",
+                "symfony/var-dumper": "<3.3"
             },
             "require-dev": {
-                "symfony/http-foundation": "^2.8.31|~3.3.13|~3.4|~4.0"
+                "doctrine/doctrine-bundle": "~1.5",
+                "symfony/asset": "~2.8|~3.0|~4.0",
+                "symfony/browser-kit": "~2.8|~3.0|~4.0",
+                "symfony/console": "~3.4|~4.0",
+                "symfony/css-selector": "~2.8|~3.0|~4.0",
+                "symfony/dom-crawler": "~2.8|~3.0|~4.0",
+                "symfony/event-dispatcher": "~3.4|~4.0",
+                "symfony/expression-language": "~2.8|~3.0|~4.0",
+                "symfony/form": "^3.4|~4.0",
+                "symfony/framework-bundle": "~3.4|~4.0",
+                "symfony/http-foundation": "~3.3|~4.0",
+                "symfony/process": "~3.3|~4.0",
+                "symfony/security-acl": "~2.8|~3.0",
+                "symfony/translation": "~3.4|~4.0",
+                "symfony/twig-bridge": "~3.4|~4.0",
+                "symfony/twig-bundle": "~3.4|~4.0",
+                "symfony/validator": "^3.4|~4.0",
+                "symfony/var-dumper": "~3.3|~4.0",
+                "symfony/yaml": "~3.4|~4.0",
+                "twig/twig": "~1.34|~2.4"
             },
             "suggest": {
-                "symfony/http-foundation": "For using the class SessionTokenStorage."
+                "symfony/security-acl": "For using the ACL functionality of this bundle"
             },
-            "type": "library",
+            "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.4-dev"
@@ -4111,7 +4148,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Component\\Security\\Csrf\\": ""
+                    "Symfony\\Bundle\\SecurityBundle\\": ""
                 },
                 "exclude-from-classmap": [
                     "/Tests/"
@@ -4131,9 +4168,9 @@
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Symfony Security Component - CSRF Library",
+            "description": "Symfony SecurityBundle",
             "homepage": "https://symfony.com",
-            "time": "2017-12-03T21:15:09+00:00"
+            "time": "2017-12-04T20:03:56+00:00"
         },
         {
             "name": "symfony/stopwatch",

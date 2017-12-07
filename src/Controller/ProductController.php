@@ -34,7 +34,7 @@ class ProductController extends Controller
 
     /**
      * @Route("/product/{id}", name="product")
-     * @Template("@front/product.twig")
+     * @Template("product.twig")
      */
     public function index(Request $request, Product $Product)
     {

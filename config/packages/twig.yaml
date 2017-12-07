@@ -1,6 +1,6 @@
 twig:
     paths:
-      '%kernel.project_dir%/templates': ~
+      '%kernel.project_dir%/templates/default': ~
       '%kernel.project_dir%/templates/admin': admin
 
     debug: '%kernel.debug%'
