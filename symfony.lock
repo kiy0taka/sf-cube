@@ -71,6 +71,9 @@
             "ref": "576d653444dade07f272c889d52fe4594caa4fc3"
         }
     },
+    "symfony/browser-kit": {
+        "version": "v3.4.1"
+    },
     "symfony/cache": {
         "version": "v3.4.1"
     },
@@ -105,6 +108,9 @@
         "version": "v1.0.3"
     },
     "symfony/dependency-injection": {
+        "version": "v3.4.1"
+    },
+    "symfony/dom-crawler": {
         "version": "v3.4.1"
     },
     "symfony/dotenv": {
