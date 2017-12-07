@@ -10,7 +10,6 @@
         "symfony/framework-bundle": "^3.4",
         "symfony/lts": "^3",
         "symfony/maker-bundle": "^1.0",
-        "symfony/requirements-checker": "^1.0",
         "symfony/web-server-bundle": "3.4",
         "symfony/yaml": "^3.4"
     },
@@ -36,8 +35,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "requirements-checker": "script"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
