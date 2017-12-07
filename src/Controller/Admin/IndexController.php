@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class IndexController extends Controller
 {
@@ -18,13 +19,19 @@ class IndexController extends Controller
     private $formFactory;
 
     /**
+     * @var AuthenticationUtils
+     */
+    private $authUtils;
+
+    /**
      * IndexController constructor.
      *
      * @param FormFactoryInterface $formFactory
      */
-    public function __construct(FormFactoryInterface $formFactory)
+    public function __construct(FormFactoryInterface $formFactory, AuthenticationUtils $authUtils)
     {
         $this->formFactory = $formFactory;
+        $this->authUtils = $authUtils;
     }
 
     /**
@@ -43,12 +50,14 @@ class IndexController extends Controller
      */
     public function login(Request $request)
     {
-        $builder = $this->formFactory->createBuilder(LoginType::class);
+        $builder = $this->formFactory->createNamedBuilder('', LoginType::class);
         $form = $builder->getForm();
-        $form->handleRequest($request);
 
-        
-        return [];
+        $error = $this->authUtils->getLastAuthenticationError();
+        return [
+            'form' => $form->createView(),
+            'error' => $error
+        ];
     }
 }
 

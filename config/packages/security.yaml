@@ -2,8 +2,8 @@ security:
     encoders:
         # Our user class and the algorithm we'll use to encode passwords
         # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
-        #App\Entity\User: bcrypt
-        Eccube\Security\Core\Encoder\PasswordEncoder: bcrypt
+        App\Entity\Member:
+          algorithm: bcrypt
 
     providers:
         # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
@@ -11,7 +11,7 @@ security:
         # To see the users at src/App/DataFixtures/ORM/LoadFixtures.php
         # To load users from somewhere else: https://symfony.com/doc/current/security/custom_provider.html
         database_users:
-            entity: { class: Eccube\Entity\Member, property: username }
+            entity: { class: App\Entity\Member, property: username }
 
     # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
     firewalls:
@@ -32,8 +32,9 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 # The page users are redirect to when there is no previous page stored in the
                 # session (for example when the users access directly to the login page).
-                # username_parameter: 'login_id'
-                # password_parameter: 'password'
+                username_parameter: 'username'
+                password_parameter: 'password'
+          provider: database_users
         customer:
             # this firewall applies to all URLs
             pattern: ^/
