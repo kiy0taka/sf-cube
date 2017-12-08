@@ -1,0 +1,4 @@
+sf_cube:
+    resource: '@SfCubeBundle/Controller'
+    type:     annotation
+    prefix:   /

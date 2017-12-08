@@ -1,0 +1,3 @@
+sf_cube:
+    resource: '@SfCubeBundle/Resources/config/routing.yaml'
+    prefix: /bundle
