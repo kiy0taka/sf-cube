@@ -1,3 +1,9 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
+
+sf_cube:
+    resource: "@SfCubeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
