@@ -1,3 +1,0 @@
-sf_cube_sf_cube_homepage:
-    path:     /
-    defaults: { _controller: SfCubeSfCubeBundle:Default:index }
